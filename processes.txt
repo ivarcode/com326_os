@@ -1,0 +1,12 @@
+process1,6
+process2,4
+process3,6
+process4,10
+process5,4
+process6,5
+process7,8
+process8,9
+process9,10
+process10,14
+process11,8
+process12,9

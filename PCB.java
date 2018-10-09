@@ -7,13 +7,11 @@ public class PCB{
   String processState;
   Process process;
 
-  public PCB(int id, int bt, int wt, String state){
-    process = new Process(id, bt, wt);
-  }
-
-  public PCB(Process process, String state){
-    pid = process.getPid();
+  public PCB(int id, String state, Process newProcess){
+    pid = id;
     processState = state;
+    process = newProcess;
+
   }
 
   public int getPid(){
@@ -34,10 +32,10 @@ public class PCB{
 
   public void setProcessState(String state){
     processState = state;
-
   }
+
   public static void main(String[] args){
-    PCB one = new PCB(1, 10, 12, "ready");
-    System.out.println(one.getProcessState());
+    //PCB one = new PCB(1, "ready");
+    //System.out.println(one.getProcessState());
   }
 }
