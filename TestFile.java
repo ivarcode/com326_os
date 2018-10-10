@@ -9,16 +9,19 @@ public class TestFile{
       int pid = 0;
       Memory<Process> mem = new Memory<Process>();
       while ((st = br.readLine()) != null) {
-        System.out.println(st);
+        //System.out.println(st);
         String[] processInfo = st.split(",");
         int burstTime = Integer.parseInt(processInfo[1]);
         Process processes = new Process(burstTime, 0);
         PCB tracker = new PCB(pid, "ready", processes);
         mem.addProcess(processes);
+        System.out.println(mem.getLength());
+        System.out.println(mem);
 
 
         // add new process to list
       }
+      //System.out.println(mem);
 
 
       // PRINT PROCESS QUEUE

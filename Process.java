@@ -19,5 +19,10 @@ public class Process{
     }
     public void setWaitTime(int time){
       waitTime = time;
+
+    }
+    public String toString(){
+      return Integer.toString(getBurstTime());
+
     }
 }

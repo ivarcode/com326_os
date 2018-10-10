@@ -19,4 +19,16 @@ public class Memory<E>{
   public void remProcess(E oldProcess){
     processes.remove(oldProcess);
   }
+  public int getLength(){
+    return processes.size();
+  }
+  public String toString(){
+    String processInfo = "";
+    for(E process : processes){
+      processInfo = "burstTime. " + process.toString()+"\n";
+    }
+    return processInfo;
+
+  }
+
 }
