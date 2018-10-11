@@ -1,5 +1,6 @@
 public class Fcfs{
 
+
   public void findWaitingTime(int[] bt, int n, int[] wt){
     wt[0] = 0;
     for (int i = 1; i < n; i++){

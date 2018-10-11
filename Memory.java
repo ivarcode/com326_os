@@ -18,6 +18,11 @@ public class Memory<E>{
 
   public void remProcess(E oldProcess){
     processes.remove(oldProcess);
+    memCount--;
+
+  }
+  public E getProcess(int index){
+      return processes.get(index);
   }
   public int getLength(){
     return processes.size();

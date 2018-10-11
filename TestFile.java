@@ -21,6 +21,10 @@ public class TestFile{
 
         // add new process to list
       }
+      mem.remProcess(mem.getProcess(4));
+      System.out.println(mem.getLength()); 
+
+
       //System.out.println(mem);
 
 
