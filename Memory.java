@@ -29,8 +29,10 @@ public class Memory<E>{
   }
   public String toString(){
     String processInfo = "";
+    int i =1;
     for(E process : processes){
-      processInfo = "burstTime. " + process.toString()+"\n";
+      processInfo = processInfo +"processID " + i +  ", burstTime = " + process.toString()+"\n";
+      i++;
     }
     return processInfo;
 
