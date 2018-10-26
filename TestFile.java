@@ -1,8 +1,10 @@
 import java.io.*;
 import java.util.*;
 
+/** This is the test file for all test cases **/
 public class TestFile{
     public static void main(String[] args)throws Exception {
+      //file to read
       File file = new File("processes.txt");
       BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -22,10 +24,13 @@ public class TestFile{
 
         // add new process to list
       }
-      mem.remProcess(mem.getProcess(4));
-      System.out.println(mem.getLength());
+      // setting up fcfs simulator
+      Fcfs simulateFcfs = new Fcfs(mem);
 
-      System.out.println("terminal: 'q' to quit, \n'1' to add process, \n'2' to remove process, \n'3' to print memory");
+      //mem.remProcess(mem.getProcess(4));
+      //System.out.println(mem.getLength());
+
+      System.out.println("terminal: 'q' to quit, \n'1' to add process, \n'2' to remove process, \n'3' to print memory \n'4'run FCFS");
       System.out.print("\n:: ");
       Scanner scanner = new Scanner(new InputStreamReader(System.in));
       String str = "";
@@ -39,7 +44,8 @@ public class TestFile{
           mem.addProcess(new Process(Integer.parseInt(str),0));
           System.out.println("process added");
           System.out.println(mem.getLength());
-        } else if (str.equals("2")) {
+        }
+        else if (str.equals("2")) {
 
           System.out.print("at what index? : ");
           str = scanner.nextLine();
@@ -49,6 +55,9 @@ public class TestFile{
         } else if (str.equals("3")) {
 
             System.out.println(mem);
+        }
+        else if (str.equals("4")){
+            System.out.println(simulateFcfs);
         }
 
         // loop

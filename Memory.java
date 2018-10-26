@@ -6,7 +6,10 @@ public class Memory<E>{
   public Memory(){
     processes = new LinkedList<E>();
   }
+  public LinkedList<E> processQueue(){
+    return processes;
 
+  }
   public void addProcess(E newProcess){
     if (memCount < 100){
       processes.add(newProcess);
@@ -21,6 +24,8 @@ public class Memory<E>{
     memCount--;
 
   }
+  //processes accessed through indexing. probably not the best idea. better through pid?
+
   public E getProcess(int index){
       return processes.get(index);
   }
