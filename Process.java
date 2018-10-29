@@ -4,11 +4,15 @@ public class Process{
     private int burstTime;
     private int waitTime;
     private int turnATime;
+    private int IOfreq;
 
-    public Process(int bt, int wt){
+
+    public Process(int bt, int at, int wt, int IO){
      burstTime = bt;
      waitTime = wt;
-     arrivalTime = 0;
+     arrivalTime = at;
+     IOfreq = IO;
+
     }
 
     public int getBurstTime(){
@@ -19,6 +23,9 @@ public class Process{
     }
     public int getArrivalTime(){
       return arrivalTime;
+    }
+    public int getIOtimeFreq(){
+      return IOfreq;
     }
     public void setBurstTime(int time){
       burstTime = time;
@@ -32,6 +39,5 @@ public class Process{
     }
     public String toString(){
       return Integer.toString(getBurstTime());
-
     }
 }

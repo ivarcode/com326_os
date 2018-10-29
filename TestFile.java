@@ -5,19 +5,27 @@ import java.util.*;
 public class TestFile{
     public static void main(String[] args)throws Exception {
       //file to read
-      File file = new File("processes.txt");
+      File file = new File("testFile.txt");
       BufferedReader br = new BufferedReader(new FileReader(file));
 
       String st;
       int pid = 0;
       Memory<Process> mem = new Memory<Process>();
       while ((st = br.readLine()) != null) {
-        //System.out.println(st);
+        //getting relevant numbers and setting them to varibles
         String[] processInfo = st.split(",");
-        int burstTime = Integer.parseInt(processInfo[1]);
-        Process processes = new Process(burstTime, 0);
+        String bt = processInfo[2];
+        String at = processInfo[1];
+        String IO = processInfo[3];
+
+
+        int burstTime = Integer.parseInt(processInfo[2].substring(bt.length()-1));
+        int IOfreq = Integer.parseInt(processInfo[3].substring(IO.length()-1));
+        int arrivalTime = Integer.parseInt(processInfo[1].substring(at.length()-1));
+        Process processes = new Process(burstTime, arrivalTime, 0, IOfreq);
         PCB tracker = new PCB(pid, "ready", processes);
         mem.addProcess(processes);
+        pid++;
         // System.out.println(mem.getLength());
         // System.out.println(mem);
 
@@ -37,16 +45,19 @@ public class TestFile{
       str = scanner.nextLine();
       while (!str.equals("q")) {
         // operate on str
+
         if (str.equals("1")) {
           // add process
-          System.out.print("burst time : ");
+          System.out.print("burst time, arrival time, IOfreq : ");
           str = scanner.nextLine();
-          mem.addProcess(new Process(Integer.parseInt(str),0));
+          String[] times = str.split(",");
+
+          mem.addProcess(new Process(Integer.parseInt(times[0]),Integer.parseInt(times[1]), 0, Integer.parseInt(times[3])));
           System.out.println("process added");
           System.out.println(mem.getLength());
         }
         else if (str.equals("2")) {
-
+          //removing processes
           System.out.print("at what index? : ");
           str = scanner.nextLine();
           mem.remProcess(mem.getProcess(Integer.parseInt(str)));
@@ -57,6 +68,7 @@ public class TestFile{
             System.out.println(mem);
         }
         else if (str.equals("4")){
+          // simulating fcfs
             System.out.println(simulateFcfs);
         }
 

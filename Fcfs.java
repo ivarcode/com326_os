@@ -8,9 +8,12 @@
 import java.util.*;
 public class Fcfs{
   LinkedList<Process>readyQueue = new LinkedList<Process>();
+  int IOtime = 2;
+
 
   public Fcfs(Memory<Process> queue){
    readyQueue = queue.processQueue();
+
 
   }
 
@@ -19,10 +22,27 @@ public class Fcfs{
     int wt = 0;
 
     for (Process process : readyQueue){
-      process.setWaitTime(wt);
-      wt = wt + process.getBurstTime();
+      // relevant variables
+      int at = process.getArrivalTime();
+      int bt = process.getBurstTime();
+      int IOfreq = process.getIOtimeFreq();
 
+      //except for the first process whose wait is 0, the wait for the others are total wait time so far
+      //minus the arrival time of that process
+      process.setWaitTime(wt - at);
+      try{
+        if (bt % IOfreq == 0)
+          wt = wt + process.getBurstTime() + (bt/IOfreq - 1)*IOtime;
+        else
+          wt = wt + process.getBurstTime() + (bt/IOfreq)*IOtime;
+      }
+      catch(ArithmeticException e){
+        System.out.println(IOfreq);
+        wt = wt + process.getBurstTime();
+
+      }
     }
+
     return wt;
 
   }
@@ -43,7 +63,7 @@ public class Fcfs{
   }
   public String toString(){
     String waitTimes = "";
-    findWaitingTime(); 
+    findWaitingTime();
     for(Process process: readyQueue){
       waitTimes += Integer.toString(process.getWaitTime()) + " ";
     }
