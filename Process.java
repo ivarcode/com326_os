@@ -1,20 +1,32 @@
 // create this using a file. we'll customize our file the way we want
 public class Process{
+    private int id;
     private int arrivalTime;
     private int burstTime;
     private int waitTime;
     private int turnATime;
     private int IOfreq;
+    private int remBurstTime;
 
 
-    public Process(int bt, int at, int wt, int IO){
+    public Process(int pid, int bt, int at, int wt, int IO){
+     id = pid;
      burstTime = bt;
      waitTime = wt;
      arrivalTime = at;
      IOfreq = IO;
+     remBurstTime = bt;
 
     }
 
+    public int getID(){
+      return id;
+    }
+
+    public int getRemBurstTime(){
+      return remBurstTime;
+
+    }
     public int getBurstTime(){
       return burstTime;
     }
@@ -37,7 +49,10 @@ public class Process{
       turnATime = time;
 
     }
+    public void setRemBurstTime(int time){
+      remBurstTime = time;
+    }
     public String toString(){
-      return Integer.toString(getBurstTime());
+      return Integer.toString(getRemBurstTime());
     }
 }

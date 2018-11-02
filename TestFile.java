@@ -9,7 +9,7 @@ public class TestFile{
       BufferedReader br = new BufferedReader(new FileReader(file));
 
       String st;
-      int pid = 0;
+      int pid = 1;
       Memory<Process> mem = new Memory<Process>();
       while ((st = br.readLine()) != null) {
         //getting relevant numbers and setting them to varibles
@@ -22,7 +22,7 @@ public class TestFile{
         int burstTime = Integer.parseInt(processInfo[2].substring(bt.length()-1));
         int IOfreq = Integer.parseInt(processInfo[3].substring(IO.length()-1));
         int arrivalTime = Integer.parseInt(processInfo[1].substring(at.length()-1));
-        Process processes = new Process(burstTime, arrivalTime, 0, IOfreq);
+        Process processes = new Process(pid, burstTime, arrivalTime, 0, IOfreq);
         PCB tracker = new PCB(pid, "ready", processes);
         mem.addProcess(processes);
         pid++;
@@ -34,11 +34,11 @@ public class TestFile{
       }
       // setting up fcfs simulator
       Fcfs simulateFcfs = new Fcfs(mem);
-
+      RoundRobin simulateRoundRobin = new RoundRobin(mem);
       //mem.remProcess(mem.getProcess(4));
       //System.out.println(mem.getLength());
 
-      System.out.println("terminal: 'q' to quit, \n'1' to add process, \n'2' to remove process, \n'3' to print memory \n'4'run FCFS");
+      System.out.println("terminal: 'q' to quit, \n'1' to add process, \n'2' to remove process, \n'3' to print memory \n'4'run FCFS \n '5' Run Round Robin");
       System.out.print("\n:: ");
       Scanner scanner = new Scanner(new InputStreamReader(System.in));
       String str = "";
@@ -52,7 +52,8 @@ public class TestFile{
           str = scanner.nextLine();
           String[] times = str.split(",");
 
-          mem.addProcess(new Process(Integer.parseInt(times[0]),Integer.parseInt(times[1]), 0, Integer.parseInt(times[3])));
+          mem.addProcess(new Process(pid, Integer.parseInt(times[0]),Integer.parseInt(times[1]), 0, Integer.parseInt(times[3])));
+          pid++; 
           System.out.println("process added");
           System.out.println(mem.getLength());
         }
@@ -70,6 +71,12 @@ public class TestFile{
         else if (str.equals("4")){
           // simulating fcfs
             System.out.println(simulateFcfs);
+        }
+        else if (str.equals("5")){
+          // simulating round robin
+          System.out.println(simulateRoundRobin);
+
+
         }
 
         // loop
